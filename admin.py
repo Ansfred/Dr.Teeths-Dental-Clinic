@@ -156,17 +156,17 @@ def employees():
     emp.protocol("WM_DELETE_WINDOW", exit)
     emp.mainloop()
 
-def invoices():
+def receipts():
     """
-    It hides the admin window and opens the invoices window.
+    It hides the admin window and opens the patients receipt window.
     """
     admin.withdraw()        # Hiding the admin window
-    global inv
-    inv = Toplevel()
-    page4 = InvoicesPage(inv)
+    global rec
+    rec = Toplevel()
+    page4 = ReceiptsPage(rec)
     page4.time()
-    inv.protocol("WM_DELETE_WINDOW", exit)
-    inv.mainloop()
+    rec.protocol("WM_DELETE_WINDOW", exit)
+    rec.mainloop()
 
 
 class AdminPage:
@@ -216,8 +216,8 @@ class AdminPage:
         self.button3.configure(background="#CF1E14")
         self.button3.configure(font="-family {Comic Sans MS} -weight {bold} -size 18")
         self.button3.configure(borderwidth="0")
-        self.button3.configure(text="""INVOICES""")
-        self.button3.configure(command=invoices)
+        self.button3.configure(text="""RECEIPTS""")
+        self.button3.configure(command=receipts)
 
     def logout(self):
         logout_confirmation = messagebox.askyesno("Logout", "Sure, you want to logout ?", parent=admin)
@@ -891,8 +891,7 @@ class UpdateEmployeeDetailsPage:
 
     def test_char(self, val):
         """
-        If the value is a letter, return True. If the value is an empty string, return True. Otherwise,
-        return False
+        If the value is a letter, return True. If the value is an empty string, return True. Otherwise, return False
         
         :param val: The value to be tested
         :return: True or False
@@ -911,6 +910,329 @@ class UpdateEmployeeDetailsPage:
         self.clock.config(text=string)
         self.clock.after(1000, self.time)
 
+
+class ReceiptsPage:
+    def __init__(self, top=None):
+        top.geometry("1366x768")
+        top.resizable(0, 0)
+        top.title("Receipts")
+
+        # Label : Tkinter Label is a widget that is used to implement display boxes where you can place text or images
+        self.label1 = Label(rec)
+        self.label1.place(relx=0, rely=0, width=1366, height=768)
+        self.img = PhotoImage(file="./images/receipts.png")
+        self.label1.configure(image=self.img)
+
+        self.clock = Label(rec)
+        self.clock.place(relx=0.85, rely=0.0675, width=120, height=36)
+        self.clock.configure(font="-family {Cambria} -size 14")
+        self.clock.configure(foreground="#000000")
+        self.clock.configure(background="#ffffff")
+
+        # Creating a text box.
+        self.entry1 = Entry(rec)
+        self.entry1.place(relx=0.05375, rely=0.27, width=240, height=28)
+        self.entry1.configure(font="-family {Cambria} -size 14")
+        self.entry1.configure(relief="flat")
+
+        # Creating a button with the text "SEARCH" and when the button is clicked, it calls the search_receipt function.
+        self.button1 = Button(rec)
+        self.button1.place(relx=0.241, rely=0.268, width=76, height=23)
+        self.button1.configure(relief="flat")
+        self.button1.configure(overrelief="flat")
+        self.button1.configure(activebackground="#CF1E14")
+        self.button1.configure(cursor="hand2")
+        self.button1.configure(foreground="#ffffff")
+        self.button1.configure(background="#CF1E14")
+        self.button1.configure(font="-family {Comic Sans MS} -weight {bold} -size 12")
+        self.button1.configure(borderwidth="0")
+        self.button1.configure(text="""SEARCH""")
+        self.button1.configure(command=self.search_receipt)
+
+        # Creating a button with the text "LOGOUT" and when the button is clicked, it calls the logout function.
+        self.button2 = Button(rec)
+        self.button2.place(relx=0.0375, rely=0.11, width=90, height=27.5)
+        self.button2.configure(relief="flat")
+        self.button2.configure(overrelief="flat")
+        self.button2.configure(activebackground="#20212e")
+        self.button2.configure(cursor="hand2")
+        self.button2.configure(foreground="#ffffff")
+        self.button2.configure(background="#20212e")
+        self.button2.configure(font="-family {Bookman Old Style} -weight {bold} -size 12")
+        self.button2.configure(borderwidth="0")
+        self.button2.configure(text="""LOGOUT""")
+        self.button2.configure(command=self.logout)
+
+        # Creating a button that will delete the receipt.
+        self.button3 = Button(rec)
+        self.button3.place(relx=0.065, rely=0.414, width=306, height=26)
+        self.button3.configure(relief="flat")
+        self.button3.configure(overrelief="flat")
+        self.button3.configure(activebackground="#CF1E14")
+        self.button3.configure(cursor="hand2")
+        self.button3.configure(foreground="#ffffff")
+        self.button3.configure(background="#CF1E14")
+        self.button3.configure(font="-family {Comic Sans MS} -weight {bold} -size 12")
+        self.button3.configure(borderwidth="0")
+        self.button3.configure(text="""DELETE RECEIPT""")
+        self.button3.configure(command=self.delete_receipt)
+
+        # Creating a button with the text "EXIT" and when the button is clicked, it will call the exit function.
+        self.button4 = Button(rec)
+        self.button4.place(relx=0.146, rely=0.86, width=76, height=23)
+        self.button4.configure(relief="flat")
+        self.button4.configure(overrelief="flat")
+        self.button4.configure(activebackground="#CF1E14")
+        self.button4.configure(cursor="hand2")
+        self.button4.configure(foreground="#ffffff")
+        self.button4.configure(background="#CF1E14")
+        self.button4.configure(font="-family {Comic Sans MS} -weight {bold} -size 12")
+        self.button4.configure(borderwidth="0")
+        self.button4.configure(text="""EXIT""")
+        self.button4.configure(command=self.exit)
+
+        # Creating scrollbars for the receipt frame
+        self.scrollbarx = Scrollbar(rec, orient=HORIZONTAL)
+        self.scrollbary = Scrollbar(rec, orient=VERTICAL)
+
+        self.tree = ttk.Treeview(rec)       # Creating a treeview widget.
+        self.tree.place(relx=0.313, rely=0.185, width=875, height=550)
+        self.tree.configure(
+            yscrollcommand=self.scrollbary.set, xscrollcommand=self.scrollbarx.set
+        )
+        self.tree.configure(selectmode="extended")
+        self.tree.bind("<<TreeviewSelect>>", self.on_tree_select)       # Binding the event of selecting a treeview item to the function on_tree_select.
+        self.tree.bind("<Double-1>", self.double_tap)       # Binding the double tap to the tree widget.
+
+        # Configuring the scrollbars to work with the tree.
+        self.scrollbary.configure(command=self.tree.yview)
+        self.scrollbarx.configure(command=self.tree.xview)
+        self.scrollbary.place(relx=0.957, rely=0.1925, width=22, height=548)
+        self.scrollbarx.place(relx=0.313, rely=0.91, width=884, height=22)
+
+        # Creating a table with 6 columns.
+        self.tree.configure(
+            columns=(
+                "Bill Number",
+                "Date",
+                "Doctor Name",
+                "Customer Name",
+                "Customer Phone Number",
+                "Amount",
+            )
+        )
+        self.tree.heading("Bill Number", text="Bill Number", anchor=W)
+        self.tree.heading("Date", text="Date", anchor=W)
+        self.tree.heading("Doctor Name", text="Doctor Name", anchor=W)
+        self.tree.heading("Customer Name", text="Customer Name", anchor=W)
+        self.tree.heading("Customer Phone Number", text="Customer Phone Number", anchor=W)
+        self.tree.heading("Amount", text="Amount", anchor=W)
+        
+        self.tree.column("#0", stretch=NO, minwidth=0, width=0)         # Ghost Column -> Tkinter Terminology
+        self.tree.column("#1", stretch=NO, minwidth=0, width=100)
+        self.tree.column("#2", stretch=NO, minwidth=0, width=100)
+        self.tree.column("#3", stretch=NO, minwidth=0, width=180)
+        self.tree.column("#4", stretch=NO, minwidth=0, width=180)
+        self.tree.column("#5", stretch=NO, minwidth=0, width=200)
+        self.tree.column("#6", stretch=NO, minwidth=0, width=110)
+
+        self.display_data()
+
+    def display_data(self):
+        """
+        It fetches all the data from the database and inserts it into the treeview.
+        """
+        cur.execute("SELECT * FROM receipt")
+        fetched_data = cur.fetchall()
+        for record in fetched_data:
+            self.tree.insert("", "end", values=(record))
+
+    selected_items = []
+    def on_tree_select(self, Event):
+        """
+        It clears the list of selected items, then iterates through the selected items in the tree and adds them to the list of selected items.
+        
+        :param Event: The event that triggered the callback
+        """
+        self.selected_items.clear()
+        for i in self.tree.selection():
+            if i not in self.selected_items:
+                self.selected_items.append(i)
+
+    def double_tap(self, Event):
+        """
+        When the user double clicks on a row in the treeview, the function will get the value of the
+        first column of the row and store it in a global variable. Then it will open a new window and
+        pass the new window to a function that will populate the new window with data from the database.
+        
+        :param Event: The event that was triggered
+        """
+        item = self.tree.identify('item', Event.x, Event.y)
+        global bill_num
+        bill_num = self.tree.item(item)['values'][0]
+        
+        global bill
+        bill = Toplevel()
+        pg = OpenBillPage(bill)
+        bill.mainloop()
+
+    def delete_receipt(self):
+        """
+        It deletes the selected receipt(s) from the database
+        """
+        value_array = []
+        to_delete = []
+
+        if len(self.selected_items) != 0:
+            delete_confirmation = messagebox.askyesno("Confirm", "Are you sure you want to delete selected receipt(s)?", parent=rec)
+            if delete_confirmation == True:
+                for i in self.selected_items:
+                    for j in self.tree.item(i)["values"]:
+                        value_array.append(j)
+                
+                for x in range(len(value_array)):
+                    if x % 5 == 0:
+                        to_delete.append(value_array[x])
+                
+                for y in to_delete:
+                    delete = "DELETE FROM receipt WHERE bill_number = ?"
+                    cur.execute(delete, [y])
+                    db.commit()
+
+                messagebox.showinfo("Success!!", "Receipt(s) deleted from database.", parent=rec)
+                self.selected_items.clear()
+                self.tree.delete(*self.tree.get_children())
+
+                self.display_data()
+        else:
+            messagebox.showerror("Error!!", "Please select an s.", parent=rec)
+
+    def search_receipt(self):
+        """
+        It searches for a bill number in the treeview and if found, it selects the row and displays a
+        messagebox.
+        """
+        value_array = []
+        for i in self.tree.get_children():
+            value_array.append(i)
+            for j in self.tree.item(i)["values"]:
+                value_array.append(j)
+
+        receipt_to_be_searched = self.entry1.get()
+        for x in value_array:
+            if x == receipt_to_be_searched:
+                self.tree.selection_set(value_array[value_array.index(x) - 1])
+                self.tree.focus(value_array[value_array.index(x) - 1])
+                messagebox.showinfo("Success!!", "Bill Number: {} found.".format(self.entry1.get()), parent=rec)
+                break
+        else: 
+            messagebox.showerror("Oops!!", "Bill Number: {} not found.".format(self.entry1.get()), parent=rec)
+
+    def logout(self):
+        """
+        If the user clicks yes on the messagebox, the receipt window is destroyed and the login window is deiconified.
+        """
+        logout_confirmation = messagebox.askyesno("Logout", "Are you sure you want to logout ?")
+        if logout_confirmation == True:
+            rec.destroy()
+            root.deiconify()
+            page1.entry1.delete(0, END)
+            page1.entry2.delete(0, END)
+
+    def time(self):
+        """
+        It takes the current time and displays it in the clock label
+        """
+        string = strftime("%H:%M:%S %p")
+        self.clock.config(text=string)
+        self.clock.after(1000, self.time)
+
+    def exit(self):
+        """
+        If the user clicks the "Yes" button, the receipt window is destroyed and the admin window is
+        deiconified
+        """
+        exit_confirmation = messagebox.askyesno("Exit", "Are you sure you want to exit ?", parent=rec)
+        if exit_confirmation == True:
+            rec.destroy()
+            admin.deiconify()
+
+
+class OpenBillPage:
+    def __init__(self, top=None):
+        top.geometry("765x488")
+        top.resizable(0, 0)
+        top.title("Bill")
+
+        # Creating a label and placing it on the window.
+        self.label1 = Label(bill)
+        self.label1.place(relx=0, rely=0, width=765, height=488)
+        self.img = PhotoImage(file="./images/bill.png")
+        self.label1.configure(image=self.img)
+        
+        # Creating a text box in the GUI.
+        self.bill_num_msg = Text(bill)
+        self.bill_num_msg.place(relx=0.150, rely=0.243, width=176, height=26)
+        self.bill_num_msg.configure(font="-family {Courier} -size 10")
+        self.bill_num_msg.configure(borderwidth=0)
+        self.bill_num_msg.configure(background="#ffffff")
+
+        # Creating a text box in the GUI.
+        self.customer_name_msg = Text(bill)
+        self.customer_name_msg.place(relx=0.650, rely=0.243, width=176, height=30)
+        self.customer_name_msg.configure(font="-family {Courier} -size 10")
+        self.customer_name_msg.configure(borderwidth=0)
+        self.customer_name_msg.configure(background="#ffffff")
+
+        # Creating a text box in the GUI.
+        self.doctor_name_msg = Text(bill)
+        self.doctor_name_msg.place(relx=0.150, rely=0.443, width=176, height=30)
+        self.doctor_name_msg.configure(font="-family {Courier} -size 10")
+        self.doctor_name_msg.configure(borderwidth=0)
+        self.doctor_name_msg.configure(background="#ffffff")
+
+        # Creating a text box in the GUI.
+        self.customer_phone_msg = Text(bill)
+        self.customer_phone_msg.place(relx=0.650, rely=0.443, width=90, height=30)
+        self.customer_phone_msg.configure(font="-family {Courier} -size 10")
+        self.customer_phone_msg.configure(borderwidth=0)
+        self.customer_phone_msg.configure(background="#ffffff")
+
+        # Creating a text box in the GUI.
+        self.bill_date_msg = Text(bill)
+        self.bill_date_msg.place(relx=0.780, rely=0.8, width=90, height=26)
+        self.bill_date_msg.configure(font="-family {Courier} -size 10")
+        self.bill_date_msg.configure(borderwidth=0)
+        self.bill_date_msg.configure(background="#ffffff")
+
+        # Creating a text box in the GUI.
+        self.amount_msg = Text(bill)
+        self.amount_msg.place(relx=0.780, rely=0.9, width=90, height=26)
+        self.amount_msg.configure(font="-family {Courier} -size 10")
+        self.amount_msg.configure(borderwidth=0)
+        self.amount_msg.configure(background="#ffffff")
+
+        find_bill = "SELECT * FROM receipt WHERE bill_number = ?"
+        cur.execute(find_bill, [bill_num])
+        results = cur.fetchall()
+        if results:
+            self.bill_num_msg.insert(END, results[0][0])
+            self.bill_num_msg.configure(state="disabled")
+
+            self.bill_date_msg.insert(END, results[0][1])
+            self.bill_date_msg.configure(state="disabled")
+            
+            self.doctor_name_msg.insert(END, results[0][2])
+            self.doctor_name_msg.configure(state="disabled")
+
+            self.customer_name_msg.insert(END, results[0][3])
+            self.customer_name_msg.configure(state="disabled")
+    
+            self.customer_phone_msg.insert(END, results[0][4])
+            self.customer_phone_msg.configure(state="disabled")
+
+            self.amount_msg.insert(END, results[0][5])
+            self.amount_msg.configure(state="disabled")
 
 page1 = LoginPage(root)
 root.bind("<Return>", LoginPage.login)
