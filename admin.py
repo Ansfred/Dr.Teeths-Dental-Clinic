@@ -10,7 +10,7 @@ from time import strftime
 
 root = Tk()
 root.geometry("1366x768")
-root.title("Welcome Admin 👋")
+root.title("Welcome Admin")
 
 user = StringVar()      # StringVar() : A class that is used to store a string value
 pswd = StringVar()
@@ -71,7 +71,7 @@ class LoginPage:
         # Creating a text entry box and placing it on the screen.
         self.entry1 = Entry(root)       # A widget that is used to enter text strings
         self.entry1.place(relx=0.350, rely=0.330, width=374, height=40)
-        self.entry1.configure(font="-family {Cambria Math} -size 18")
+        self.entry1.configure(font="-family {MS Reference Sans Serif} -size 18")
         # The relief style of a widget refers to certain simulated 3-D effects around the outside of the widget (Reference : https://www.tutorialspoint.com/python3/tk_relief.htm)
         self.entry1.configure(relief="flat")
         self.entry1.configure(textvariable=user)
@@ -79,7 +79,7 @@ class LoginPage:
         # Creating a text entry box and placing it on the screen.
         self.entry2 = Entry(root)
         self.entry2.place(relx=0.350, rely=0.530, width=374, height=40)
-        self.entry2.configure(font="-family {Cambria Math} -size 18")
+        self.entry2.configure(font="-family {MS Reference Sans Serif} -size 18")
         self.entry2.configure(relief="flat")
         self.entry2.configure(show="*")
         self.entry2.configure(textvariable=pswd)
@@ -951,7 +951,7 @@ class ReceiptsPage:
 
         # Creating a button with the text "LOGOUT" and when the button is clicked, it calls the logout function.
         self.button2 = Button(rec)
-        self.button2.place(relx=0.0375, rely=0.11, width=90, height=27.5)
+        self.button2.place(relx=0.0375, rely=0.115, width=90, height=27.5)
         self.button2.configure(relief="flat")
         self.button2.configure(overrelief="flat")
         self.button2.configure(activebackground="#20212e")
@@ -1016,16 +1016,16 @@ class ReceiptsPage:
                 "Bill Number",
                 "Date",
                 "Doctor Name",
-                "Customer Name",
-                "Customer Phone Number",
+                "Patient Name",
+                "Patient Phone Number",
                 "Amount",
             )
         )
         self.tree.heading("Bill Number", text="Bill Number", anchor=W)
         self.tree.heading("Date", text="Date", anchor=W)
         self.tree.heading("Doctor Name", text="Doctor Name", anchor=W)
-        self.tree.heading("Customer Name", text="Customer Name", anchor=W)
-        self.tree.heading("Customer Phone Number", text="Customer Phone Number", anchor=W)
+        self.tree.heading("Patient Name", text="Patient Name", anchor=W)
+        self.tree.heading("Patient Phone Number", text="Patient Phone Number", anchor=W)
         self.tree.heading("Amount", text="Amount", anchor=W)
         
         self.tree.column("#0", stretch=NO, minwidth=0, width=0)         # Ghost Column -> Tkinter Terminology
@@ -1172,43 +1172,43 @@ class OpenBillPage:
         
         # Creating a text box in the GUI.
         self.bill_num_msg = Text(bill)
-        self.bill_num_msg.place(relx=0.150, rely=0.243, width=176, height=26)
-        self.bill_num_msg.configure(font="-family {Courier} -size 10")
+        self.bill_num_msg.place(relx=0.215, rely=0.3625, width=130, height=30)
+        self.bill_num_msg.configure(font="-family {Courier} -size 11")
         self.bill_num_msg.configure(borderwidth=0)
         self.bill_num_msg.configure(background="#ffffff")
 
         # Creating a text box in the GUI.
-        self.customer_name_msg = Text(bill)
-        self.customer_name_msg.place(relx=0.650, rely=0.243, width=176, height=30)
-        self.customer_name_msg.configure(font="-family {Courier} -size 10")
-        self.customer_name_msg.configure(borderwidth=0)
-        self.customer_name_msg.configure(background="#ffffff")
+        self.patient_name_msg = Text(bill)
+        self.patient_name_msg.place(relx=0.685, rely=0.3625, width=130, height=30)
+        self.patient_name_msg.configure(font="-family {Courier} -size 11")
+        self.patient_name_msg.configure(borderwidth=0)
+        self.patient_name_msg.configure(background="#ffffff")
 
         # Creating a text box in the GUI.
         self.doctor_name_msg = Text(bill)
-        self.doctor_name_msg.place(relx=0.150, rely=0.443, width=176, height=30)
-        self.doctor_name_msg.configure(font="-family {Courier} -size 10")
+        self.doctor_name_msg.place(relx=0.215, rely=0.51, width=130, height=30)
+        self.doctor_name_msg.configure(font="-family {Courier} -size 11")
         self.doctor_name_msg.configure(borderwidth=0)
         self.doctor_name_msg.configure(background="#ffffff")
 
         # Creating a text box in the GUI.
-        self.customer_phone_msg = Text(bill)
-        self.customer_phone_msg.place(relx=0.650, rely=0.443, width=90, height=30)
-        self.customer_phone_msg.configure(font="-family {Courier} -size 10")
-        self.customer_phone_msg.configure(borderwidth=0)
-        self.customer_phone_msg.configure(background="#ffffff")
+        self.patient_phone_msg = Text(bill)
+        self.patient_phone_msg.place(relx=0.79, rely=0.51, width=130, height=30)
+        self.patient_phone_msg.configure(font="-family {Courier} -size 11")
+        self.patient_phone_msg.configure(borderwidth=0)
+        self.patient_phone_msg.configure(background="#ffffff")
 
         # Creating a text box in the GUI.
         self.bill_date_msg = Text(bill)
-        self.bill_date_msg.place(relx=0.780, rely=0.8, width=90, height=26)
-        self.bill_date_msg.configure(font="-family {Courier} -size 10")
+        self.bill_date_msg.place(relx=0.59, rely=0.7875, width=130, height=30)
+        self.bill_date_msg.configure(font="-family {Courier} -size 11")
         self.bill_date_msg.configure(borderwidth=0)
         self.bill_date_msg.configure(background="#ffffff")
 
         # Creating a text box in the GUI.
         self.amount_msg = Text(bill)
-        self.amount_msg.place(relx=0.780, rely=0.9, width=90, height=26)
-        self.amount_msg.configure(font="-family {Courier} -size 10")
+        self.amount_msg.place(relx=0.61, rely=0.8775, width=130, height=30)
+        self.amount_msg.configure(font="-family {Courier} -size 11")
         self.amount_msg.configure(borderwidth=0)
         self.amount_msg.configure(background="#ffffff")
 
@@ -1225,11 +1225,11 @@ class OpenBillPage:
             self.doctor_name_msg.insert(END, results[0][2])
             self.doctor_name_msg.configure(state="disabled")
 
-            self.customer_name_msg.insert(END, results[0][3])
-            self.customer_name_msg.configure(state="disabled")
+            self.patient_name_msg.insert(END, results[0][3])
+            self.patient_name_msg.configure(state="disabled")
     
-            self.customer_phone_msg.insert(END, results[0][4])
-            self.customer_phone_msg.configure(state="disabled")
+            self.patient_phone_msg.insert(END, results[0][4])
+            self.patient_phone_msg.configure(state="disabled")
 
             self.amount_msg.insert(END, results[0][5])
             self.amount_msg.configure(state="disabled")
