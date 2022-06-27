@@ -116,7 +116,7 @@ class LoginPage:
         # Creating a text entry box and placing it on the screen.
         self.entry1 = Entry(root)       # A widget that is used to enter text strings
         self.entry1.place(relx=0.350, rely=0.36, width=374, height=40)
-        self.entry1.configure(font="-family {MS Reference Sans Serif} -size 18")
+        self.entry1.configure(font="-family {Cambria Math} -size 18")
         # The relief style of a widget refers to certain simulated 3-D effects around the outside of the widget (Reference : https://www.tutorialspoint.com/python3/tk_relief.htm)
         self.entry1.configure(relief="flat")
         self.entry1.configure(textvariable=user)
@@ -124,7 +124,7 @@ class LoginPage:
         # Creating a text entry box and placing it on the screen.
         self.entry2 = Entry(root)
         self.entry2.place(relx=0.350, rely=0.54, width=374, height=40)
-        self.entry2.configure(font="-family {MS Reference Sans Serif} -size 18")
+        self.entry2.configure(font="-family {Cambria Math} -size 18")
         self.entry2.configure(relief="flat")
         self.entry2.configure(show="*")
         self.entry2.configure(textvariable=pswd)
@@ -183,35 +183,35 @@ class ReceiptGeneratePage:
         # Creating a label widget and placing it on the window.
         self.clock = Label(bills_ledger)
         self.clock.place(relx=0.85, rely=0.065, width=140, height=36)
-        self.clock.configure(font="-family {Cambria} -size 14")
+        self.clock.configure(font="-family {Cambria Math} -size 14")
         self.clock.configure(foreground="#000000")
         self.clock.configure(background="#ffffff")
 
         # Creating a text box for the receptionist to enter the doctor's name.
         self.entry1 = Entry(bills_ledger)
         self.entry1.place(relx=0.1675, rely=0.335, width=240, height=24)
-        self.entry1.configure(font="-family {Cambria} -size 14")
+        self.entry1.configure(font="-family {Cambria Math} -size 14")
         self.entry1.configure(relief="flat")
         self.entry1.configure(textvariable=doctor_name)
 
         # Creating a text box for the receptionist to enter the patient name.
         self.entry2 = Entry(bills_ledger)
         self.entry2.place(relx=0.175, rely=0.4225, width=240, height=24)
-        self.entry2.configure(font="-family {Cambria} -size 14")
+        self.entry2.configure(font="-family {Cambria Math} -size 14")
         self.entry2.configure(relief="flat")
         self.entry2.configure(textvariable=patient_name)
 
         # Creating a text box for the user to enter the mobile number of the patient.
         self.entry3 = Entry(bills_ledger)
         self.entry3.place(relx=0.235, rely=0.5125, width=150, height=24)
-        self.entry3.configure(font="-family {Cambria} -size 14")
+        self.entry3.configure(font="-family {Cambria Math} -size 14")
         self.entry3.configure(relief="flat")
         self.entry3.configure(textvariable=patient_mobile_number)
 
         # Creating a text box for the user to enter the amount of the bill.
         self.entry4 = Entry(bills_ledger)
         self.entry4.place(relx=0.135, rely=0.6, width=240, height=24)
-        self.entry4.configure(font="-family {Cambria} -size 14")
+        self.entry4.configure(font="-family {Cambria Math} -size 14")
         self.entry4.configure(relief="flat")
         self.entry4.configure(textvariable=bill_amount)
 
