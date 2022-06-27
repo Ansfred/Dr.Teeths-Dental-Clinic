@@ -13,11 +13,12 @@ The primary purpose of the created software is to help the clinic efficiently ma
 
 ### Step 1 :
 Fork all files from the GitHub Repository (https://github.com/Ansfred/DentalClinic-Management-System)
+***
 ### Step 2 :
 Make a 'database' folder. Add a 'clinicDatabase.db' file to it. Under the same directory, make a new .sql file and paste the following commands as stated below.
 ***
 ### Step 3 :
-CREATE TABLE employee(
+> CREATE TABLE employee(
    employee_id          CHAR(15)   PRIMARY KEY    NOT NULL,
    name                 CHAR(30)                  NOT NULL,
    contact_number       INT                       NOT NULL,
@@ -27,9 +28,9 @@ CREATE TABLE employee(
    designation          CHAR(50)                  NOT NULL
 );
 
-INSERT INTO employee VALUES('DTC0000', 'Ansfred Dsouza', 8788944520, 'Pune', 634255368879, 'admin', 'Admin');
+> INSERT INTO employee VALUES('DTC0000', 'Ansfred Dsouza', 8788944520, 'Pune', 634255368879, 'admin', 'Admin');
 
-CREATE TABLE receipt(
+> CREATE TABLE receipt(
    bill_number              CHAR(15)   PRIMARY KEY    NOT NULL,
    date                     CHAR(30)                  NOT NULL,
    doctor_name              TEXT                      NOT NULL,
@@ -40,6 +41,7 @@ CREATE TABLE receipt(
 ***
 ### Step 4 :
 Save the file
+***
 ### Step 5 :
 Run this file. In your VS Code, download the SQLite extension(~ alexcvzz). Press 'Ctrl + Shift + P' / 'Cmd + Shift + P', type 'SQLite'. Click on 'Open Database', select the project database('clinicDatabase.db'). Then again repeat the above step, but this time select 'Run Query'. Respective tables would be created.
 
