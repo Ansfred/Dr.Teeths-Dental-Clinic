@@ -40,7 +40,7 @@ Make a 'database' folder. Add a 'clinicDatabase.db' file to it. Under the same d
 );
 ***
 ### Step 4 :
-Save the file
+Save the file (Now DTC0000 is the master admin)
 ***
 ### Step 5 :
 Run this file. In your VS Code, download the SQLite extension(~ alexcvzz). Press 'Ctrl + Shift + P' / 'Cmd + Shift + P', type 'SQLite'. Click on 'Open Database', select the project database('clinicDatabase.db'). Then again repeat the above step, but this time select 'Run Query'. Respective tables would be created.
