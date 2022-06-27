@@ -71,7 +71,7 @@ class LoginPage:
         # Creating a text entry box and placing it on the screen.
         self.entry1 = Entry(root)       # A widget that is used to enter text strings
         self.entry1.place(relx=0.350, rely=0.330, width=374, height=40)
-        self.entry1.configure(font="-family {MS Reference Sans Serif} -size 18")
+        self.entry1.configure(font="-family {Cambria Math} -size 18")
         # The relief style of a widget refers to certain simulated 3-D effects around the outside of the widget (Reference : https://www.tutorialspoint.com/python3/tk_relief.htm)
         self.entry1.configure(relief="flat")
         self.entry1.configure(textvariable=user)
@@ -79,7 +79,7 @@ class LoginPage:
         # Creating a text entry box and placing it on the screen.
         self.entry2 = Entry(root)
         self.entry2.place(relx=0.350, rely=0.530, width=374, height=40)
-        self.entry2.configure(font="-family {MS Reference Sans Serif} -size 18")
+        self.entry2.configure(font="-family {Cambria Math} -size 18")
         self.entry2.configure(relief="flat")
         self.entry2.configure(show="*")
         self.entry2.configure(textvariable=pswd)
@@ -242,14 +242,14 @@ class EmployeePage:
 
         self.clock = Label(emp)
         self.clock.place(relx=0.85, rely=0.0675, width=120, height=36)
-        self.clock.configure(font="-family {Cambria} -size 14")
+        self.clock.configure(font="-family {Cambria Math} -size 14")
         self.clock.configure(foreground="#000000")
         self.clock.configure(background="#ffffff")
 
         # Creating a text box.
         self.entry1 = Entry(emp)
-        self.entry1.place(relx=0.0525, rely=0.27, width=240, height=28)
-        self.entry1.configure(font="-family {Cambria} -size 14")
+        self.entry1.place(relx=0.0575, rely=0.27, width=240, height=28)
+        self.entry1.configure(font="-family {Cambria Math} -size 12")
         self.entry1.configure(relief="flat")
 
         # Creating a button with the text "SEARCH" and when the button is clicked, it calls the search_employee function.
@@ -445,7 +445,7 @@ class EmployeePage:
                 # Appending the values of the list to the employees_to_be_removed list.
                 for x in range(len(val_array)):
                     if x % 7 == 0:
-                        employees_to_be_removed.append(val_array[j])
+                        employees_to_be_removed.append(val_array[x])
                         
                 flag = 1
 
@@ -455,13 +455,13 @@ class EmployeePage:
                         flag = 0
                         break
                     else:
-                        delete_query = "DELETE FROM employee WHERE emp_id = ?"
+                        delete_query = "DELETE FROM employee WHERE employee_id = ?"
                         cur.execute(delete_query, [y])
                         db.commit()
 
                 if flag == 1:
                     messagebox.showinfo("Success!!", "Employee(s) deleted from database.", parent=emp)
-                    self.sel.clear()
+                    self.selected_items.clear()
                     self.tree.delete(*self.tree.get_children())
                     self.display_data()
                 else:
@@ -581,40 +581,40 @@ class AddEmployeePage:
         # Creating a text box.
         self.entry1 = Entry(emp_add)
         self.entry1.place(relx=0.056, rely=0.27, width=420, height=30)
-        self.entry1.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry1.configure(font="-family {Cambria Math} -size 18")
         self.entry1.configure(relief="flat")
         
         # Validating the entry2 field to only accept numbers.
         self.entry2 = Entry(emp_add)
         self.entry2.place(relx=0.056, rely=0.4325, width=420, height=30)
-        self.entry2.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry2.configure(font="-family {Cambria Math} -size 18")
         self.entry2.configure(relief="flat")
         self.entry2.configure(validate="key", validatecommand=(self.r1, "%P"))
 
         # Validating the entry3 field to only accept numbers.
         self.entry3 = Entry(emp_add)
         self.entry3.place(relx=0.056, rely=0.6025, width=420, height=30)
-        self.entry3.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry3.configure(font="-family {Cambria Math} -size 18")
         self.entry3.configure(relief="flat")
         self.entry3.configure(validate="key", validatecommand=(self.r1, "%P"))
 
         # Validating the entry field to only accept characters.
         self.entry4 = Entry(emp_add)
-        self.entry4.place(relx=0.555, rely=0.2725, width=374, height=30)
-        self.entry4.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry4.place(relx=0.5575, rely=0.2725, width=374, height=30)
+        self.entry4.configure(font="-family {Cambria Math} -size 18")
         self.entry4.configure(relief="flat")
         self.entry4.configure(validate="key", validatecommand=(self.r2, "%P"))
 
         # Creating a text box for the user to enter their name.
         self.entry5 = Entry(emp_add)
-        self.entry5.place(relx=0.555, rely=0.435, width=374, height=30)
-        self.entry5.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry5.place(relx=0.5575, rely=0.435, width=374, height=30)
+        self.entry5.configure(font="-family {Cambria Math} -size 18")
         self.entry5.configure(relief="flat")
         
         # Creating a text box for the user to enter their password.
         self.entry6 = Entry(emp_add)
-        self.entry6.place(relx=0.555, rely=0.6025, width=374, height=30)
-        self.entry6.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry6.place(relx=0.5575, rely=0.6025, width=374, height=30)
+        self.entry6.configure(font="-family {Cambria Math} -size 18")
         self.entry6.configure(relief="flat")
         self.entry6.configure(show="*")
 
@@ -746,7 +746,7 @@ class UpdateEmployeeDetailsPage:
 
         self.clock = Label(emp_update)
         self.clock.place(relx=0.84, rely=0.065, width=140, height=36)
-        self.clock.configure(font="-family {Cambria} -size 14")
+        self.clock.configure(font="-family {Cambria Math} -size 14")
         self.clock.configure(foreground="#000000")
         self.clock.configure(background="#ffffff")
 
@@ -757,40 +757,40 @@ class UpdateEmployeeDetailsPage:
         # Creating a text box.
         self.entry1 = Entry(emp_update)
         self.entry1.place(relx=0.056, rely=0.27, width=420, height=30)
-        self.entry1.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry1.configure(font="-family {Cambria Math} -size 18")
         self.entry1.configure(relief="flat")
         
         # Validating the entry2 field to only accept numbers.
         self.entry2 = Entry(emp_update)
         self.entry2.place(relx=0.056, rely=0.4325, width=420, height=30)
-        self.entry2.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry2.configure(font="-family {Cambria Math} -size 18")
         self.entry2.configure(relief="flat")
         self.entry2.configure(validate="key", validatecommand=(self.r1, "%P"))
 
         # Validating the entry3 field to only accept numbers.
         self.entry3 = Entry(emp_update)
         self.entry3.place(relx=0.056, rely=0.6025, width=420, height=30)
-        self.entry3.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry3.configure(font="-family {Cambria Math} -size 18")
         self.entry3.configure(relief="flat")
         self.entry3.configure(validate="key", validatecommand=(self.r1, "%P"))
 
         # Validating the entry field to only accept characters.
         self.entry4 = Entry(emp_update)
         self.entry4.place(relx=0.555, rely=0.2725, width=374, height=30)
-        self.entry4.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry4.configure(font="-family {Cambria Math} -size 18")
         self.entry4.configure(relief="flat")
         self.entry4.configure(validate="key", validatecommand=(self.r2, "%P"))
 
         # Creating a text box for the user to enter their name.
         self.entry5 = Entry(emp_update)
         self.entry5.place(relx=0.555, rely=0.435, width=374, height=30)
-        self.entry5.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry5.configure(font="-family {Cambria Math} -size 18")
         self.entry5.configure(relief="flat")
         
         # Creating a text box for the user to enter their password.
         self.entry6 = Entry(emp_update)
         self.entry6.place(relx=0.555, rely=0.6025, width=374, height=30)
-        self.entry6.configure(font="-family {MS Reference Sans Serif} -size 15")
+        self.entry6.configure(font="-family {Cambria Math} -size 18")
         self.entry6.configure(relief="flat")
         self.entry6.configure(show="*")
 
@@ -925,14 +925,14 @@ class ReceiptsPage:
 
         self.clock = Label(rec)
         self.clock.place(relx=0.85, rely=0.0675, width=120, height=36)
-        self.clock.configure(font="-family {Cambria} -size 14")
+        self.clock.configure(font="-family {Cambria Math} -size 14")
         self.clock.configure(foreground="#000000")
         self.clock.configure(background="#ffffff")
 
         # Creating a text box.
         self.entry1 = Entry(rec)
         self.entry1.place(relx=0.05375, rely=0.27, width=240, height=28)
-        self.entry1.configure(font="-family {Cambria} -size 14")
+        self.entry1.configure(font="-family {Cambria Math} -size 16")
         self.entry1.configure(relief="flat")
 
         # Creating a button with the text "SEARCH" and when the button is clicked, it calls the search_receipt function.
@@ -1105,7 +1105,7 @@ class ReceiptsPage:
 
                 self.display_data()
         else:
-            messagebox.showerror("Error!!", "Please select an s.", parent=rec)
+            messagebox.showerror("Error!!", "Please select a receipt.", parent=rec)
 
     def search_receipt(self):
         """
