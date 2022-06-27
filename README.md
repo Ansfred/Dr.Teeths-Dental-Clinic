@@ -12,7 +12,7 @@ The primary purpose of the created software is to help the clinic efficiently ma
 ## Installation
 
 ### Step 1 :
-Fork all files from the GitHub Repository (https://github.com/Ansfred/DentalClinic-Management-System)
+Fork all files from the GitHub Repository (https://github.com/Ansfred/DentalClinic-Management-System). Install Tkinter (pip install tkinter)
 ***
 ### Step 2 :
 Make a 'database' folder. Add a 'clinicDatabase.db' file to it. Under the same directory, make a new .sql file and paste the following commands as stated below.
