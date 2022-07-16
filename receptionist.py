@@ -284,7 +284,7 @@ class ReceiptGeneratePage:
 
         # Creating a text widget and placing it in the bills_ledger window.
         self.patient_name_msg = Text(bills_ledger)
-        self.patient_name_msg.place(relx=0.7725, rely=0.491, width=150, height=30)
+        self.patient_name_msg.place(relx=0.7725, rely=0.491, width=180, height=30)
         self.patient_name_msg.configure(font="-family {Courier} -size 12")
         self.patient_name_msg.configure(borderwidth=0)
         self.patient_name_msg.configure(background="#ffffff")
