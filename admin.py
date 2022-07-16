@@ -1179,7 +1179,7 @@ class OpenBillPage:
 
         # Creating a text box in the GUI.
         self.patient_name_msg = Text(bill)
-        self.patient_name_msg.place(relx=0.685, rely=0.3625, width=130, height=30)
+        self.patient_name_msg.place(relx=0.685, rely=0.3625, width=150, height=30)
         self.patient_name_msg.configure(font="-family {Courier} -size 11")
         self.patient_name_msg.configure(borderwidth=0)
         self.patient_name_msg.configure(background="#ffffff")
