@@ -28,7 +28,7 @@ Make a 'database' folder. Add a 'clinicDatabase.db' file to it. Under the same d
    designation          CHAR(50)                  NOT NULL
 );
 
-> INSERT INTO employee VALUES('DTC0000', 'Ansfred Dsouza', 8788944520, 'Pune', 634255368879, 'admin', 'Admin');
+> INSERT INTO employee VALUES('DTC0000', 'Ansfred Dsouza', 8790964352, 'Pune', 634255368879, 'admin', 'Admin');
 
 > CREATE TABLE receipt(
    bill_number              CHAR(15)   PRIMARY KEY    NOT NULL,
