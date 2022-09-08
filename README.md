@@ -46,7 +46,7 @@ Save the file (Now DTC0000 is the master admin)
 Run this file. In your VS Code, download the SQLite extension(~ alexcvzz). Press 'Ctrl + Shift + P' / 'Cmd + Shift + P', type 'SQLite'. Click on 'Open Database', select the project database('clinicDatabase.db'). Then again repeat the above step, but this time select 'Run Query'. Respective tables would be created.
 
 ## Future Scope
-This software can be hosted online and a more scalable database like MongoDB can be used instead of SQLite, which is been used currently.
+This software can be hosted online and a more scalable database like MongoDB can be used instead of SQLite, which is being used currently.
 
 ## PS
-All images are manually designed on Canva(https://www.canva.com/). Few images have been sourced from https://www.pexels.com/
+All images are manually designed on Canva(https://www.canva.com/).
